@@ -22,3 +22,4 @@ variable "next_hop_gateway" {
   type = string
   default = "default-internet-gateway"
 }
+
