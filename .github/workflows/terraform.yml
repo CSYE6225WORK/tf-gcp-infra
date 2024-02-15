@@ -8,6 +8,9 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
+    env:
+      GOOGLE_CREDENTIALS: ${{secrets.GCP_CREDENTIALS}}
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,13 +20,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        env:
-          GOOGLE_CREDENTIALS: ${{secrets.GCP_CREDENTIALS}}
 
       - name: Terraform Format
         run: terraform fmt -check
 
       - name: Terraform Plan
         run: terraform plan -input=false
-        env:
-          GOOGLE_CREDENTIALS: ${{secrets.GCP_CREDENTIALS}}
