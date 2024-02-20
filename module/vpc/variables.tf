@@ -1,6 +1,6 @@
 variable "name" {
   type = list(string)
-  default = [ "vpc-network1", "vpc-network2" ]
+  default = [ "vpc-network1" ]
 }
 
 variable "web_ip_cidr_range" {
