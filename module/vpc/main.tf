@@ -4,7 +4,7 @@ resource "google_compute_network" "vpc" {
   description                     = "this is my csye6225 class vpc network region"
   auto_create_subnetworks         = false
   routing_mode                    = "REGIONAL"
-  delete_default_routes_on_create = true
+  delete_default_routes_on_creat = true
 }
 
 resource "google_compute_subnetwork" "webapp_subnetwork" {
