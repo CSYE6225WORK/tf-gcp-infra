@@ -1,4 +1,4 @@
 provider "google" {
-  project = "firm-reason-411722"
-  region  = "us-east4"
+  project = var.project_id
+  region  = var.region
 }
