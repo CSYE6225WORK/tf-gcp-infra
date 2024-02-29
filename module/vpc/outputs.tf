@@ -5,3 +5,7 @@ output "vpc-id" {
 output "webapp-sub" {
   value = google_compute_subnetwork.webapp_subnetwork.id
 }
+
+output "private_vpc_connection" {
+  value = google_service_networking_connection.private_vpc_connection
+}
