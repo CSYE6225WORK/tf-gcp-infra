@@ -12,3 +12,8 @@ variable "webapp-tags" {
   type    = list(string)
   default = ["webapp"]
 }
+
+variable "zone" {
+  type    = string
+  default = "us-east4-b"
+}

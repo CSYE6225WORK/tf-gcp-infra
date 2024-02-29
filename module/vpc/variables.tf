@@ -13,11 +13,6 @@ variable "web_ip_cidr_range" {
   default = "10.0.0.0/24"
 }
 
-variable "db_ip_cidr_range" {
-  type    = string
-  default = "10.0.1.0/24"
-}
-
 variable "dest_range" {
   type    = string
   default = "0.0.0.0/0"
@@ -26,5 +21,25 @@ variable "dest_range" {
 variable "next_hop_gateway" {
   type    = string
   default = "default-internet-gateway"
+}
+
+variable "global_address_purpose" {
+  type    = string
+  default = "VPC_PEERING"
+}
+
+variable "global_address_address_type" {
+  type    = string
+  default = "INTERNAL"
+}
+
+variable "global_address_prefix_length" {
+  type    = string
+  default = "16"
+}
+
+variable "service_networking" {
+  type    = string
+  default = "servicenetworking.googleapis.com"
 }
 

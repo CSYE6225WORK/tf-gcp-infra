@@ -7,7 +7,7 @@ resource "google_compute_firewall" "firewall" {
     for_each = var.firewall-rules
     content {
       protocol = allow.key
-      ports = allow.value
+      ports    = allow.value
     }
   }
 

@@ -1,6 +1,6 @@
 resource "google_compute_instance" "instance" {
   name         = "webapp-instance"
-  description = "webapp api for csye6225 class"
+  description  = "webapp api for csye6225 class"
   machine_type = var.machine_type
   zone         = var.zone
 
@@ -20,6 +20,12 @@ resource "google_compute_instance" "instance" {
 
     }
   }
+
+  metadata_startup_script = <<-EOT
+    sudo bash -c "echo 'DATABASE_URL=mysql://${var.sql_username}:${var.sql_password}@${var.sql_host}/CSYE6225' > /opt/app/.env"
+    sudo pnpm run -C /opt/app prisma-migrate
+    sudo systemctl start nodeapp.service
+  EOT
 
   tags = var.webapp-tags
 }
