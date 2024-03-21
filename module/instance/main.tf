@@ -28,4 +28,9 @@ resource "google_compute_instance" "instance" {
   EOT
 
   tags = var.webapp-tags
+
+  service_account {
+    email  = var.email
+    scopes = var.service_account_scopes
+  }
 }

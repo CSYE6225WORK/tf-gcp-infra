@@ -26,6 +26,10 @@ variable "sql_host" {
   type = string
 }
 
+variable "email" {
+  type = string
+}
+
 variable "machine_type" {
   type    = string
   default = "n2-standard-2"
@@ -33,7 +37,7 @@ variable "machine_type" {
 
 variable "image" {
   type    = string
-  default = "firm-reason-411722/webapp-image"
+  default = "firm-reason-411722/webapp-image-1710978411"
 }
 
 variable "type" {
@@ -44,4 +48,9 @@ variable "type" {
 variable "size" {
   type    = string
   default = "100"
+}
+
+variable "service_account_scopes" {
+  type    = list(string)
+  default = ["cloud-platform"]
 }
