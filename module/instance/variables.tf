@@ -37,7 +37,7 @@ variable "machine_type" {
 
 variable "image" {
   type    = string
-  default = "firm-reason-411722/webapp-image-1710978411"
+  default = "firm-reason-411722/webapp-image-1711577180"
 }
 
 variable "type" {

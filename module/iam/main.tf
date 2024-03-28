@@ -16,3 +16,10 @@ resource "google_project_iam_binding" "monitoring_metric_writer" {
 
   members = ["serviceAccount:${google_service_account.service_account.email}"]
 }
+
+resource "google_project_iam_binding" "service_account_token_reator" {
+  project = var.project
+  role    = "roles/iam.serviceAccountTokenCreator"
+
+  members = ["serviceAccount:${google_service_account.service_account.email}"]
+}

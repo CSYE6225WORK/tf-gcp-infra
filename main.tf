@@ -36,3 +36,18 @@ module "dns" {
   source      = "./module/dns"
   instance_ip = module.instance.nat_ip
 }
+
+module "pubsub" {
+  source                = "./module/pubsub"
+  service_account_email = module.iam.service_account_email
+}
+
+module "serverless" {
+  source                = "./module/severless"
+  sql_username          = module.gcloudSQL.sql_username
+  sql_password          = module.gcloudSQL.sql_password
+  sql_host              = module.gcloudSQL.sql_host
+  topic_id              = module.pubsub.topic_id
+  service_account_email = module.iam.service_account_email
+  vpc-vpc_connector     = module.vpc.vpc-connector
+}

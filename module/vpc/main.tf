@@ -31,3 +31,9 @@ resource "google_service_networking_connection" "private_vpc_connection" {
   service                 = var.service_networking
   reserved_peering_ranges = [google_compute_global_address.private_service_range.name]
 }
+
+resource "google_vpc_access_connector" "connector" {
+  name          = "vpc-connector"
+  network       = google_compute_network.vpc.id
+  ip_cidr_range = var.connector_ip_cidr_range
+}

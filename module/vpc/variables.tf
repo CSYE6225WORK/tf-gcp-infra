@@ -43,3 +43,8 @@ variable "service_networking" {
   default = "servicenetworking.googleapis.com"
 }
 
+variable "connector_ip_cidr_range" {
+  type    = string
+  default = "10.8.0.0/28"
+}
+
