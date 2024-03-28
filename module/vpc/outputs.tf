@@ -9,3 +9,7 @@ output "webapp-sub" {
 output "private_vpc_connection" {
   value = google_service_networking_connection.private_vpc_connection
 }
+
+output "vpc-connector" {
+  value = google_vpc_access_connector.connector.id
+}
