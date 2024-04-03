@@ -50,7 +50,7 @@ resource "google_compute_instance_template" "instance" {
     network    = var.vpc-id
     subnetwork = var.webapp-sub
     access_config {
-      
+
     }
   }
 
