@@ -23,8 +23,7 @@ variable "vpc-vpc_connector" {
 }
 
 variable "location" {
-  type    = string
-  default = "us-east4"
+  type = string
 }
 
 variable "name" {

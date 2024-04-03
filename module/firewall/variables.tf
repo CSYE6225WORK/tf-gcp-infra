@@ -16,6 +16,6 @@ variable "firewall-rules" {
     tcp = list(string)
   })
   default = {
-    tcp = ["3000", "22"]
+    tcp = ["22", "3000"]
   }
 }
