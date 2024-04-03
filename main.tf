@@ -2,12 +2,6 @@ module "vpc" {
   source = "./module/vpc"
 }
 
-module "firewall" {
-  source      = "./module/firewall"
-  vpc-id      = module.vpc.vpc-id
-  webapp-tags = var.webapp-tags
-}
-
 module "iam" {
   source  = "./module/iam"
   project = var.project_id
@@ -32,11 +26,6 @@ module "gcloudSQL" {
   private_vpc_connection = module.vpc.private_vpc_connection
 }
 
-module "dns" {
-  source      = "./module/dns"
-  instance_ip = module.instance.nat_ip
-}
-
 module "pubsub" {
   source                = "./module/pubsub"
   service_account_email = module.iam.service_account_email
@@ -50,4 +39,30 @@ module "serverless" {
   topic_id              = module.pubsub.topic_id
   service_account_email = module.iam.service_account_email
   vpc-vpc_connector     = module.vpc.vpc-connector
+  location              = var.region
 }
+
+module "autoscale" {
+  source             = "./module/autoscale"
+  instance_template  = module.instance.template_instance
+  base_instance_name = module.instance.template_instance_name
+  region             = var.region
+}
+
+module "loadbalance" {
+  source        = "./module/loadbalance"
+  health_checks = [module.autoscale.health_checks]
+  backend_group = module.autoscale.backend_group
+}
+
+module "firewall" {
+  source      = "./module/firewall"
+  vpc-id      = module.vpc.vpc-id
+  webapp-tags = var.webapp-tags
+}
+
+module "dns" {
+  source      = "./module/dns"
+  instance_ip = module.loadbalance.ip_address
+}
+
