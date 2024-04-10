@@ -1,5 +1,6 @@
 module "vpc" {
   source = "./module/vpc"
+  region = var.region
 }
 
 module "iam" {
@@ -7,16 +8,23 @@ module "iam" {
   project = var.project_id
 }
 
+module "kmskey" {
+  source                = "./module/kmskey"
+  location              = var.region
+  service_account_email = module.iam.service_account_email
+}
+
 module "instance" {
-  source       = "./module/instance"
-  vpc-id       = module.vpc.vpc-id
-  webapp-sub   = module.vpc.webapp-sub
-  webapp-tags  = var.webapp-tags
-  zone         = var.zone
-  sql_username = module.gcloudSQL.sql_username
-  sql_password = module.gcloudSQL.sql_password
-  sql_host     = module.gcloudSQL.sql_host
-  email        = module.iam.service_account_email
+  source            = "./module/instance"
+  vpc-id            = module.vpc.vpc-id
+  webapp-sub        = module.vpc.webapp-sub
+  webapp-tags       = var.webapp-tags
+  zone              = var.zone
+  sql_username      = module.gcloudSQL.sql_username
+  sql_password      = module.gcloudSQL.sql_password
+  sql_host          = module.gcloudSQL.sql_host
+  email             = module.iam.service_account_email
+  kms_key_self_link = module.kmskey.vm-key
 }
 
 module "gcloudSQL" {
@@ -24,6 +32,7 @@ module "gcloudSQL" {
   vpc-id                 = module.vpc.vpc-id
   region                 = var.region
   private_vpc_connection = module.vpc.private_vpc_connection
+  encryption_key_name    = module.kmskey.cloudsql_key
 }
 
 module "pubsub" {

@@ -34,6 +34,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 resource "google_vpc_access_connector" "connector" {
   name          = "vpc-connector"
+  region        = var.region
   network       = google_compute_network.vpc.id
   ip_cidr_range = var.connector_ip_cidr_range
 }

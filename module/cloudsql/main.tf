@@ -23,6 +23,8 @@ resource "google_sql_database_instance" "cloud_sql_instance" {
       enabled            = true
     }
   }
+
+  encryption_key_name = var.encryption_key_name
 }
 
 resource "google_sql_database" "cloud_sql_database" {

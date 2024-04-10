@@ -6,6 +6,10 @@ variable "region" {
   type = string
 }
 
+variable "encryption_key_name" {
+  type = string
+}
+
 variable "private_vpc_connection" {
   type = object({
     id                      = string
@@ -23,7 +27,7 @@ variable "private_vpc_connection" {
 
 variable "tier" {
   type    = string
-  default = "db-f1-micro"
+  default = "db-g1-small"
 }
 
 variable "deletion_protection" {
