@@ -5,7 +5,7 @@ variable "project_id" {
 
 variable "region" {
   type    = string
-  default = "us-east4"
+  default = "us-east1"
 }
 
 variable "webapp-tags" {
@@ -15,5 +15,5 @@ variable "webapp-tags" {
 
 variable "zone" {
   type    = string
-  default = "us-east4-b"
+  default = "us-east1-a"
 }

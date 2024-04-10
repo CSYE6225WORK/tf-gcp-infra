@@ -30,6 +30,10 @@ variable "email" {
   type = string
 }
 
+variable "kms_key_self_link" {
+  type = string
+}
+
 variable "machine_type" {
   type    = string
   default = "n2-standard-2"
